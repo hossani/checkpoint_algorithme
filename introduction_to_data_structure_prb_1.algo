@@ -1,0 +1,50 @@
+ALGORITHM problem_one
+VAR
+    a: ARRAY_OF INTEGER[50];
+    b: ARRAY_OF INTEGER[50];
+    n:INTEGER;
+    m:INTEGER;
+    i:INTEGER;
+    j:INTEGER;
+    sum:INTEGER:=0;
+    z:INTEGER:=0;
+
+BEGIN
+    read(n); // size tableau a
+    read(m); // size tableau b
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        write("Write a number");
+        read(a[i]);
+    END_FOR
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        write("Write a number");
+        read(b[j]);
+    END_FOR
+
+    // This algorithm is for compare each element of set one with the second set
+    FOR i FROM 0 TO n-1 STEP 1  DO
+    z:=0
+    FOR j FROM 0 TO m-1 STEP 1  DO
+        IF (b[j]=a[i]) THEN
+        z:=1
+        END_IF
+    END_FOR
+    IF (z=0) THEN
+    sum:=sum+a[i];
+    END_IF
+    END_FOR
+     // For compare each element of set two with the first set (vice versa)
+    FOR j FROM 0 TO m-1 STEP 1  DO
+    z:=0
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        IF (a[i]=b[j]) THEN
+        z:=1
+        END_IF
+    END_FOR
+    IF (z=0) THEN
+    sum:=sum+b[j];
+    END_IF
+    END_FOR
+    write(sum); // somme des nombres non répeter
+
+END

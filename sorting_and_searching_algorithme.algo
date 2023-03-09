@@ -1,0 +1,23 @@
+ALGORITHM algo_de_tri
+VAR
+    arr : ARRAY_OF INTEGER[10]; 
+    i,j:INTEGER;
+    val:INTEGER; 
+BEGIN
+
+    FOR i FROM 0 TO arr.length-1 STEP 1  DO
+        read(arr[i]); // Pour remplir le tableau
+    END_FOR
+
+    FOR i FROM 1 TO arr.length-1 STEP 1  DO
+        val:=arr[i]; 
+        
+    FOR j FROM i-1 TO 0 STEP -1  DO  // Pour parcourir dans le tableau
+    IF (arr[j]>val) THEN  
+        arr[j+1]:=arr[j];   // Ici, c'est l'echange des valeurs 
+        arr[j]:=val;
+    END_IF
+    END_FOR
+    END_FOR
+
+END

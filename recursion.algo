@@ -1,0 +1,58 @@
+PROCEDURE dot_product(n:INTEGER,v1 : ARRAY_OF FLOAT, v2 : ARRAY_OF FLOAT,VAR ps:FLOAT)
+VAR
+    k:INTEGER;
+BEGIN
+    ps:=0;
+    FOR k FROM 0 TO n-1 STEP 1  DO
+        ps:=ps+v1[k]*v2[k]; // produit scalaire
+    END_FOR
+END
+
+FUNCTION function_dot_product(n:INTEGER,v1:ARRAY_OF FLOAT,v2 : ARRAY_OF FLOAT) : FLOAT
+VAR
+    ps:INTEGER:=0;
+    k:INTEGER;
+BEGIN
+    FOR k FROM 0 TO n-1 STEP 1  DO
+        ps:=ps+v1[k]*v2[k]; 
+    END_FOR
+    RETURN ps ; // produit scalaire
+END
+
+ALGORITHM check_vectors
+VAR
+    n:INTEGER:=2; // le nombre 2 represente la dimension du vecteur c'est à dire le couple (x,y)
+    vectors : ARRAY_OF FLOAT[n][2];
+    v1 : ARRAY_OF FLOAT[n];
+    v2 : ARRAY_OF FLOAT[n];
+    ps1:FLOAT; 
+    ps2:FLOAT;
+    i:INTEGER;
+    j:INTEGER;
+BEGIN
+    // Pour remplir les deux vecteurs v1 et v2 
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        FOR j FROM 0 TO 1 STEP 1  DO
+            read(vectors[i][j]);
+            IF (j=0) THEN
+                v1[i]:=vectors[i][0]; 
+            ELSE
+                v2[i]:=vectors[i][1];
+            END_IF
+        END_FOR
+    END_FOR
+    // 1ere methode pour voir si v1 et v2 sont orthogonaux
+    dot_product(n,v1,v2,ps1);
+    IF (ps1=0) THEN
+        write("v1 and v2 are orthogonal");
+    ELSE
+        write("v1 and v2 aren't orthogonal");
+    END_IF
+// 2ème methode pour voir si v1 et v2 sont orthogonaux
+    ps2:=function_dot_product(n,v1,v2);
+    IF (ps2=0) THEN
+        write("v1 and v2 are orthogonal");
+    ELSE
+        write("v1 and v2 aren't orthogonal");
+    END_IF
+END
